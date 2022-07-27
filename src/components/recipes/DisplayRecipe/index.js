@@ -9,7 +9,7 @@ class DisplayRecipe extends React.Component {
     render() {
         return (
             <div>
-                DisplayRecipe Says Hello!
+                DisplayRecipe Says Hello!{this.props.title}
             </div>
         )
     }

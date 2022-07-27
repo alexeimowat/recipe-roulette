@@ -109,7 +109,7 @@ class NewRecipe extends React.Component {
 
                     <h2>Instructions:</h2>
                     <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.instructions)}} /> */}
-                    <DisplayRecipe />
+                    <DisplayRecipe title={this.state.recipeTitle}/>
 
                     <button type='submit'>Submit</button>
                 </form>
