@@ -5,26 +5,45 @@ displays it to the screen
 import React from 'react';
 import axios, { Axios } from 'axios';
 
+const test = "hello, I am a const";
 class NewRecipe extends React.Component {
     
+
     constructor(props) {
         super(props);
-        this.state = {ingredient: '', recipeImage: '', recipeTitle: '', ingredientList: ['']};
+        this.state = {ingredient: '', 
+                        recipeImage: '',
+                        recipeTitle: '', 
+                        ingredientList: ['']};
 
         this.getRecipe = this.getRecipe.bind(this);
         this.ingredientsElement = this.ingredientsElement.bind(this);
     }
     
     ingredientsElement(responseArray) {
-        console.log(responseArray.length);
-        // const arrayCp = responseArray;
-        
-        responseArray.forEach(ingredient => {
-            // console.log(ingredient.original);
-            this.setState({ ingredientList: this.state.ingredientList.push(ingredient.original) }); 
+        console.log(responseArray);
+
+        // First we want to replace the old recipe with a blank array
+        let newEmpty = [];
+        this.setState({
+            ingredientList: [...this.state.ingredientList, newEmpty]
         });
 
-        
+        // next we want to add all the ingredients to a temp array and change the state to 
+        // reflect this new array
+        let tempArray = [];
+        // console.log("Printing all items:");
+        for (let i=0; i<responseArray.length; i++) {
+            // console.log(responseArray[i].original);
+            tempArray[i] = responseArray[i].original;
+        }
+        // console.log("The temp array");
+        // console.log(tempArray);
+
+        this.setState({
+            ingredientList: [...this.state.ingredientList, tempArray]
+        });
+        console.log(this.state.ingredientList);
     }
 
     /* Gets a random recipe from Spoonacular API and updates the state to show the new ingredient
@@ -42,11 +61,13 @@ class NewRecipe extends React.Component {
                                 recipeTitle: recipeData.title,
                                 });
                 this.ingredientsElement(recipeData.extendedIngredients);
-                console.log(this.state.ingredientList);
+                
+                // console.log(this.state.ingredientList);
             })
            .catch((error)=>{
               console.log(error);
-           }); 
+            }); 
+        // console.log(this.state.ingredientList);
     }  
     
     render() {
@@ -55,6 +76,9 @@ class NewRecipe extends React.Component {
                 <h1>{this.state.recipeTitle}</h1>
                 <img src={this.state.recipeImage} alt="image" width="300" height="200"/>
                 <p>{this.state.ingredient}</p>
+                {/* <div>
+                    {this.state.instructions}
+                </div> */}
                 <button onClick={this.getRecipe}>
                     New Recipe
                 </button>
