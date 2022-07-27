@@ -2,6 +2,7 @@
 import React from 'react';
 import axios, { Axios } from 'axios';
 import DOMPurify from 'dompurify';
+import DisplayRecipe from './DisplayRecipe';
 
 // constants
 const initialState = {
@@ -97,7 +98,7 @@ class NewRecipe extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <img src={this.state.recipeImage} alt="image" width="300" height="200"/>
+                    {/* <img src={this.state.recipeImage} alt="image" width="300" height="200"/>
                     <h1>{this.state.recipeTitle}</h1>
                     <p>Serves: {this.state.servingSize} <br/>Ready in {this.state.readyInMinutes} minutes</p>
                     <h2>Summary:</h2>
@@ -107,7 +108,8 @@ class NewRecipe extends React.Component {
                     <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.ingredientList)}} />
 
                     <h2>Instructions:</h2>
-                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.instructions)}} />
+                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.instructions)}} /> */}
+                    <DisplayRecipe />
 
                     <button type='submit'>Submit</button>
                 </form>
