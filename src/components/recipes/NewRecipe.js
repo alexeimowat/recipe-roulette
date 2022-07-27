@@ -1,9 +1,7 @@
-/* This component issues a request from the Spoonacular API to get a random recipe and 
-displays it to the screen
-*/
 // imports
 import React from 'react';
 import axios, { Axios } from 'axios';
+import DOMPurify from 'dompurify';
 
 // constants
 const initialState = {
@@ -11,50 +9,65 @@ const initialState = {
     recipeImage: "",
     recipeTitle: "",
     ingredientList: "",
-    instructions: ""
+    instructions: "",
+    servingSize: "",
+    readyInMinutes: "",
+    recipeSummary: ""
 }
-
 const spoonacularAddr = "https://api.spoonacular.com/recipes/random?apiKey=a1d424f72e474e8db3dec5e0baf85ba3";
-const rapidAPIAddr = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random";
-const rapidAPIKey = "e80a8a6f02msh7a2a36a879b4d5bp1e6ce2jsn80ba9331c81b";
+// const rapidAPIAddr = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random";
+// const rapidAPIKey = "e80a8a6f02msh7a2a36a879b4d5bp1e6ce2jsn80ba9331c81b";
 
+/**
+ * NewRecipe class is responsible for creating an Axios get request to the Spoonacular API. 
+ *  - Once a response has been accepted, we parse through the important data we care about and store them in the local
+ *      state of this component. 
+ *  - The render method then calls the DisplayRecipe component which takes in NewRecipe's state as its own props 
+ *      and displays it for the user
+ *  - NewRecipe will also be responsible for applying parameters for the request which will be added in a future 
+ *      update
+ */
 class NewRecipe extends React.Component {
-    
-
     constructor(props) {
         super(props);
-        this.state = {ingredient: '', 
-                        recipeImage: '',
-                        recipeTitle: '', 
-                        ingredientList: ['']};
+        this.state = {ingredient: "", 
+                        recipeImage: "",
+                        recipeTitle: "", 
+                        ingredientList: "",
+                        instructions: "",
+                        servingSize: "",
+                        readyInMinutes: "",
+                        recipeSummary: ""    
+                    };
 
         this.getRecipe = this.getRecipe.bind(this);
-        // this.ingredientsElement = this.ingredientsElement.bind(this);
         this.clearState = this.clearState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    /* Gets a random recipe from Spoonacular API and updates the state to show the new ingredient
+    /* 
+    Gets a random recipe from Spoonacular API and updates the state and its variables to reflect the response data
     */
     getRecipe() {
-        // console.log("Calling getRecipe");
-        // console.log("Current Value of state:");
-        // console.log(this.state.ingredient);
         axios.get(spoonacularAddr)
             .then((response) => {
-                console.log(response.data.recipes[0]);
+                // console.log(response.data.recipes[0]);
+                // get the data we care about from the response
                 let recipeData = response.data.recipes[0];
-                console.log(recipeData.extendedIngredients.length);
-
-                let tempAr = [];
+                // a string representing the ingredients, we create a html list from the response
+                let displayIngredientsElement = "";
                 for (let i = 0; i<recipeData.extendedIngredients.length; i++) {
-                    tempAr[i] = recipeData.extendedIngredients[i].original;
+                    displayIngredientsElement = displayIngredientsElement + "<li>" + recipeData.extendedIngredients[i].original + "</li>";
                 }
-
+                // update the state variables based on the response
                 this.setState({ingredient: recipeData.extendedIngredients[0].original, 
                                 recipeImage: recipeData.image,
                                 recipeTitle: recipeData.title,
-                                ingredientList: tempAr
+                                ingredientList: displayElement,
+                                instructions: recipeData.instructions,
+                                servingSize: recipeData.servings,
+                                readyInMinutes: recipeData.readyInMinutes,
+                                recipeSummary: recipeData.summary
                                 });
             })
            .catch((error)=>{
@@ -62,10 +75,16 @@ class NewRecipe extends React.Component {
             }); 
     }
     
+    /* Resets the state before getting a new response from the API. This is to ensure 
+    a clear and initial state for no chance of carried over data from previous responses
+    */
     clearState() {
         this.setState({...initialState})
     }
 
+    /* Once a user requests a new random recipe, we clear the state and then get a recipe via 
+    an Axios get request
+    */
     handleSubmit = e => {
         e.preventDefault();
         
@@ -80,22 +99,19 @@ class NewRecipe extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <img src={this.state.recipeImage} alt="image" width="300" height="200"/>
                     <h1>{this.state.recipeTitle}</h1>
-                    {/* <p>{this.state.ingredientList[0]}</p> */}
-                    <p>{this.state.ingredientList[0]}</p>
-                    <p>{this.state.ingredientList[1]}</p>
+                    <p>Serves: {this.state.servingSize} <br/>Ready in {this.state.readyInMinutes} minutes</p>
+                    <h2>Summary:</h2>
+                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.recipeSummary)}} />
+
+                    <h2>Ingredients:</h2>
+                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.ingredientList)}} />
+
+                    <h2>Instructions:</h2>
+                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.instructions)}} />
+
                     <button type='submit'>Submit</button>
                 </form>
             </div>
-            // <div>
-            //     <h1>{this.state.recipeTitle}</h1>
-            //     <p>{this.state.ingredient}</p>
-            //     {/* <div>
-            //         {this.state.instructions}
-            //     </div> */}
-            //     <button onClick={this.getRecipe}>
-            //         New Recipe
-            //     </button>
-            // </div>
         );
     }
 }
