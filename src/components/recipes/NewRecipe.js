@@ -63,7 +63,7 @@ class NewRecipe extends React.Component {
                 this.setState({ingredient: recipeData.extendedIngredients[0].original, 
                                 recipeImage: recipeData.image,
                                 recipeTitle: recipeData.title,
-                                ingredientList: displayElement,
+                                ingredientList: displayIngredientsElement,
                                 instructions: recipeData.instructions,
                                 servingSize: recipeData.servings,
                                 readyInMinutes: recipeData.readyInMinutes,
