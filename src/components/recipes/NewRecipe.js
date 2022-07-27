@@ -9,13 +9,22 @@ class NewRecipe extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = {ingredient: '', recipeImage: '', recipeTitle: '', ingredientList: []};
+        this.state = {ingredient: '', recipeImage: '', recipeTitle: '', ingredientList: ['']};
 
         this.getRecipe = this.getRecipe.bind(this);
+        this.ingredientsElement = this.ingredientsElement.bind(this);
     }
     
-    ingredientsElement() {
-        console.log(this.state.ingredientList);
+    ingredientsElement(responseArray) {
+        console.log(responseArray.length);
+        // const arrayCp = responseArray;
+        
+        responseArray.forEach(ingredient => {
+            // console.log(ingredient.original);
+            this.setState({ ingredientList: this.state.ingredientList.push(ingredient.original) }); 
+        });
+
+        
     }
 
     /* Gets a random recipe from Spoonacular API and updates the state to show the new ingredient
@@ -31,8 +40,9 @@ class NewRecipe extends React.Component {
                 this.setState({ingredient: recipeData.extendedIngredients[0].original, 
                                 recipeImage: recipeData.image,
                                 recipeTitle: recipeData.title,
-                                ingredientList: recipeData.extendedIngredients});
-                this.ingredientsElement();
+                                });
+                this.ingredientsElement(recipeData.extendedIngredients);
+                console.log(this.state.ingredientList);
             })
            .catch((error)=>{
               console.log(error);
