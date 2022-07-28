@@ -17,12 +17,19 @@ class DisplayRecipe extends React.Component {
                 <Card.Img varient="top" src={this.props.image}/>
                 <Card.Body>
                     <Card.Title>{this.props.title}</Card.Title>
+                    <Card.Text>
+                        Serves {this.props.servingSize}, Ready in {this.props.readyInMinutes} minutes</Card.Text>
                     <Card.Subtitle>Ingredients</Card.Subtitle>
                     <Card.Text>
-                        {/* {this.props.ingredients[0]} */}
-                            {Array.from(this.props.ingredients).map(ingredient => (
-                                <li key={Math.random()}>{ingredient}</li>
-                            ))}
+                        {Array.from(this.props.ingredients).map(ingredient => (
+                            <li key={Math.random()}>{ingredient}</li>
+                        ))}    
+                    </Card.Text>
+                    <Card.Subtitle>Steps</Card.Subtitle>
+                    <Card.Text>
+                        {Array.from(this.props.instructions).map((instructions, index) => (
+                            <li key={index}>{instructions}</li>
+                        ))}
                     </Card.Text>
                     {/* <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.ingredientList)}} /> */}
 

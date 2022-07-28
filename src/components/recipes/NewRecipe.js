@@ -52,11 +52,18 @@ class NewRecipe extends React.Component {
     getRecipe() {
         axios.get(spoonacularAddr)
             .then((response) => {
-                // console.log(response.data.recipes[0]);
+                // console.log(response.data.recipes[0].analyzedInstructions[0].steps[0].step);
                 // get the data we care about from the response
                 let recipeData = response.data.recipes[0];
-                // a string representing the ingredients, we create a html list from the response
-                // let displayIngredientsElement = "";
+
+                // create a temporary list to store the instructions before setting the state again
+                // also sanitize the text because some of the steps for recipes have wierd tags
+                let theInstructions = [];
+                for (let i = 0; i<recipeData.analyzedInstructions[0].steps.length; i++) {
+                    let inst = DOMPurify.sanitize(recipeData.analyzedInstructions[0].steps[i].step);
+                    theInstructions[i] = inst;
+                }
+                // a list representing the ingredients, we create a html list from the response
                 let displayIngredientsElement = [];
                 for (let i = 0; i<recipeData.extendedIngredients.length; i++) {
                     displayIngredientsElement[i] = recipeData.extendedIngredients[i].original;
@@ -67,7 +74,7 @@ class NewRecipe extends React.Component {
                                 recipeImage: recipeData.image,
                                 recipeTitle: recipeData.title,
                                 ingredientList: displayIngredientsElement,
-                                instructions: recipeData.instructions,
+                                instructions: theInstructions,
                                 servingSize: recipeData.servings,
                                 readyInMinutes: recipeData.readyInMinutes,
                                 recipeSummary: recipeData.summary
@@ -93,7 +100,7 @@ class NewRecipe extends React.Component {
         
         this.clearState();
         this.getRecipe();
-        console.log(this.state.ingredientList);
+        console.log(this.state.instructions);
         
     }
     
@@ -118,7 +125,10 @@ class NewRecipe extends React.Component {
                 </form>
                 <DisplayRecipe title={this.state.recipeTitle}
                                     image={this.state.recipeImage}
-                                    ingredients={this.state.ingredientList}/>
+                                    ingredients={this.state.ingredientList}
+                                    instructions={this.state.instructions}
+                                    servingSize={this.state.servingSize}
+                                    readyInMinutes={this.state.readyInMinutes}/>
             </div>
         );
     }
