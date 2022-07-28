@@ -56,9 +56,11 @@ class NewRecipe extends React.Component {
                 // get the data we care about from the response
                 let recipeData = response.data.recipes[0];
                 // a string representing the ingredients, we create a html list from the response
-                let displayIngredientsElement = "";
+                // let displayIngredientsElement = "";
+                let displayIngredientsElement = [];
                 for (let i = 0; i<recipeData.extendedIngredients.length; i++) {
-                    displayIngredientsElement = displayIngredientsElement + "<li>" + recipeData.extendedIngredients[i].original + "</li>";
+                    displayIngredientsElement[i] = recipeData.extendedIngredients[i].original;
+                    // displayIngredientsElement = displayIngredientsElement + "<li>" + recipeData.extendedIngredients[i].original + "</li>";
                 }
                 // update the state variables based on the response
                 this.setState({ingredient: recipeData.extendedIngredients[0].original, 
@@ -91,6 +93,7 @@ class NewRecipe extends React.Component {
         
         this.clearState();
         this.getRecipe();
+        console.log(this.state.ingredientList);
         
     }
     
@@ -109,10 +112,13 @@ class NewRecipe extends React.Component {
 
                     <h2>Instructions:</h2>
                     <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.instructions)}} /> */}
-                    <DisplayRecipe title={this.state.recipeTitle}/>
+                    
 
                     <button type='submit'>Submit</button>
                 </form>
+                <DisplayRecipe title={this.state.recipeTitle}
+                                    image={this.state.recipeImage}
+                                    ingredients={this.state.ingredientList}/>
             </div>
         );
     }
