@@ -15,7 +15,7 @@ root.render(
     {/* <App /> */}
     <NavHeader />
     <NewRecipe />
-    <NavFooter />
+    {/* <NavFooter /> */}
   </React.StrictMode>
 );
 

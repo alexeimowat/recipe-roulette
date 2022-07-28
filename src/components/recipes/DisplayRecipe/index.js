@@ -14,7 +14,7 @@ class DisplayRecipe extends React.Component {
 
     render() {
         return (
-            <Card style={{ width: '40rem', margin: 'auto', backgroundColor: '#F5F5F5' }}>
+            <Card style={{ width: '40rem', margin: 'auto', backgroundColor: '#F5F5F5', marginBottom: '30px' }}>
                 <Card.Img varient="top" src={this.props.image}/>
                 {/* <Card.ImgOverlay >
                     <Button style={{ right: '0', bottom: '0' }}>Save</Button>
