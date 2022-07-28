@@ -21,7 +21,7 @@ class DisplayRecipe extends React.Component {
                     <Card.Text>
                         {/* {this.props.ingredients[0]} */}
                             {Array.from(this.props.ingredients).map(ingredient => (
-                                <li key="{this.props.ingredients.prototype.indexOf(ingredient).toString()}">{ingredient}</li>
+                                <li key={Math.random()}>{ingredient}</li>
                             ))}
                     </Card.Text>
                     {/* <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.ingredientList)}} /> */}
