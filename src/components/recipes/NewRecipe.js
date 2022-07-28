@@ -52,7 +52,7 @@ class NewRecipe extends React.Component {
     getRecipe() {
         axios.get(spoonacularAddr)
             .then((response) => {
-                // console.log(response.data.recipes[0].analyzedInstructions[0].steps[0].step);
+                console.log(response.data.recipes[0]);
                 // get the data we care about from the response
                 let recipeData = response.data.recipes[0];
 
@@ -72,7 +72,7 @@ class NewRecipe extends React.Component {
                 // update the state variables based on the response
                 this.setState({ingredient: recipeData.extendedIngredients[0].original, 
                                 recipeImage: recipeData.image,
-                                recipeTitle: recipeData.title,
+                                recipeTitle: recipeData.title.toUpperCase(),
                                 ingredientList: displayIngredientsElement,
                                 instructions: theInstructions,
                                 servingSize: recipeData.servings,

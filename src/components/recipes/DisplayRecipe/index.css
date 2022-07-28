@@ -1,13 +1,14 @@
-img {
+/* img {
     float: left;
     width: 300px;
     height: 200px;
-}
+} */
 
 .titleContent {
     float: right;
 }
 
 .smallFont {
+    color: red;
     font-style: italic;
 }
