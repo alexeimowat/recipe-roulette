@@ -6,7 +6,8 @@ import DisplayRecipe from './DisplayRecipe';
 
 // constants
 const initialState = {
-    ingredient: "", // just for testing output, not in final code
+    ingredient: "",
+    recipeID: 0, // just for testing output, not in final code
     recipeImage: "",
     recipeTitle: "",
     ingredientList: "",
@@ -31,7 +32,8 @@ const spoonacularAddr = "https://api.spoonacular.com/recipes/random?apiKey=a1d42
 class NewRecipe extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {ingredient: "", 
+        this.state = {ingredient: "",
+                        recipeID: 0, 
                         recipeImage: "",
                         recipeTitle: "", 
                         ingredientList: "",
@@ -70,7 +72,8 @@ class NewRecipe extends React.Component {
                     // displayIngredientsElement = displayIngredientsElement + "<li>" + recipeData.extendedIngredients[i].original + "</li>";
                 }
                 // update the state variables based on the response
-                this.setState({ingredient: recipeData.extendedIngredients[0].original, 
+                this.setState({ingredient: recipeData.extendedIngredients[0].original,
+                                recipeID: recipeData.id, 
                                 recipeImage: recipeData.image,
                                 recipeTitle: recipeData.title.toUpperCase(),
                                 ingredientList: displayIngredientsElement,
@@ -128,7 +131,8 @@ class NewRecipe extends React.Component {
                                     ingredients={this.state.ingredientList}
                                     instructions={this.state.instructions}
                                     servingSize={this.state.servingSize}
-                                    readyInMinutes={this.state.readyInMinutes}/>
+                                    readyInMinutes={this.state.readyInMinutes}
+                                    recipeID={this.state.recipeID}/>
             </div>
         );
     }

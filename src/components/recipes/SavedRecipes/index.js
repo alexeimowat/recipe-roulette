@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import Nav from 'react-bootstrap/Nav';
+
 
 class SavedRecipes extends React.Component {
 
@@ -23,7 +25,8 @@ class SavedRecipes extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.getRecipe}>Test fetch</button>
+                {/* <button onClick={this.getRecipe}>Test fetch</button> */}
+                <Nav.Link onClick={this.getRecipe}>Saved</Nav.Link>
             </div>
         )
     }
