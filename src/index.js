@@ -8,16 +8,13 @@ import reportWebVitals from './reportWebVitals';
 import NavHeader from './components/header/index';
 import NewRecipe from './components/recipes/NewRecipe';
 import SavedRecipes from './components/recipes/SavedRecipes';
+import MainContent from './components/mainContent/index';
 // import NavFooter from './components/footer/index';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <NavHeader />
-    <NewRecipe />
-    {/* <SavedRecipes /> */}
-    {/* <NavFooter /> */}
+    <MainContent />
   </React.StrictMode>
 );
 
