@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3030
+const cors = require('cors');
 
 const db = require('./queries');
 
@@ -11,6 +12,7 @@ app.use(
     extended: true,
   })
 )
+app.use(cors());
 
 // We’ll tell a route to look for a GET request on the root / URL and return some JSON:
 app.get('/', (request, response) => {
