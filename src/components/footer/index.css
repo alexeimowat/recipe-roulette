@@ -1,0 +1,22 @@
+.footerContainer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    /* text-align: center; */
+    background-color: #F7F7F7;
+    margin: 100px 0 0 0;
+  }
+  .footerContainer p, .footerContainer a {
+    padding: 0;
+    margin: 0;
+  }
+  .footerContainer p {
+    color: #212121;
+  }
+  .footerContainer a, .footerContainer a:visited, .footerContainer a:hover, .footerContainer a:active, .footerContainer a:focus {
+    color: #212121;
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+  }

@@ -5,13 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 // Custom Component Imports
+import NavHeader from './components/header/index';
 import NewRecipe from './components/recipes/NewRecipe';
+import NavFooter from './components/footer/index';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
+    <NavHeader />
     <NewRecipe />
+    <NavFooter />
   </React.StrictMode>
 );
 
