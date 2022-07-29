@@ -18,7 +18,7 @@ class NavHeader extends React.Component {
                         <Nav className="me-auto">
                             <Nav.Link href="#home" onClick={this.props.showNewRecipe}>Home</Nav.Link>
                             <Nav.Link href="#saved-recipes" onClick={this.props.showSaved}>Saved Recipes</Nav.Link>
-                            <Nav.Link href="#about">About</Nav.Link>
+                            {/* <Nav.Link href="#about">About</Nav.Link> */}
                         </Nav>
                 </Container>
             </Navbar>

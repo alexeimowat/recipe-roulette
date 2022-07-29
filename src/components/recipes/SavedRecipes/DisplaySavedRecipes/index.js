@@ -27,7 +27,7 @@ class DisplaySavedRecipe extends React.Component {
         // console.log("Ready to try API request");
         axios.get("http://localhost:3030/saved")
             .then((response) => {
-                // console.log(response.data);
+                console.log(response.data);
                 this.setState({fetchedRecipes: response.data});
             })
             .catch((error) => {
@@ -47,7 +47,8 @@ class DisplaySavedRecipe extends React.Component {
                                             ingredients={recipe.ingredients}
                                             instructions={recipe.instructions}
                                             image={recipe.picture}
-                                            isSaved={true}/>
+                                            isSaved={true}
+                                            recipeID={recipe.recipeid}/>
                         ))}
             </div>
         )

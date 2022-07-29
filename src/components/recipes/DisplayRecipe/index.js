@@ -2,6 +2,7 @@ import React from "react";
 import './index.css';
 import Card from 'react-bootstrap/Card';
 import { Button } from "react-bootstrap";
+import DeleteSavedRecipe from "../SavedRecipes/DeleteSavedRecipe";
 
 class DisplayRecipe extends React.Component {
 
@@ -19,7 +20,7 @@ class DisplayRecipe extends React.Component {
                         {/* Conditionally render the delete button. We only want to show it when 
                         user is viewing saved recipes. This is passed as a prop via the parent */}
                         {this.props.isSaved ? 
-                            <Button variant="secondary" style={{ float: 'right', marginRight: '5px' }}>Delete</Button> 
+                            <DeleteSavedRecipe recipeid={this.props.recipeID}/>
                                     : null}
                     </Card.Title>
                     <Card.Text style={{ fontStyle: 'italic' }}>
