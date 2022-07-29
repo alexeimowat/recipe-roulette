@@ -12,19 +12,30 @@ class SaveRecipe extends React.Component {
 
     saveRecipe(formattedInstructions, formattedIngredients) {
         let recipe = this.props.recipeDetails;
-        axios.post("localhost:3030/saved",
+        // console.log(recipe.title);
+        axios.post("http://localhost:3030/save",
             {
                 data: {
-                    title: recipe.title,
-                    time: recipe.readyInMinutes,
-                    servings: recipe.servingSize,
-                    recipeid: recipe.recipeID,
-                    picture: recipe.image,
-                    meal: 'test',
-                    instructions: formattedInstructions,
-                    ingredients: formattedIngredients,
+                    title: "Test Title",
+                    time: "50",
+                    servings: "2",
+                    recipeid: 123455,
+                    picture: "hello.jpg",
+                    meal: "test",
+                    instructions: '{"Hello"}',
+                    ingredients: '{"Hi"}',
                     gf: false,
-                    cuisine: 'test'
+                    cuisine: "test"
+                    // title: recipe.title,
+                    // time: recipe.readyInMinutes,
+                    // servings: recipe.servingSize,
+                    // recipeid: recipe.recipeID,
+                    // picture: recipe.image,
+                    // meal: 'test',
+                    // instructions: formattedInstructions,
+                    // ingredients: formattedIngredients,
+                    // gf: false,
+                    // cuisine: 'test'
                 }
             })
             .then((response) => {

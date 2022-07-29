@@ -37,13 +37,15 @@ const removeSaved = (request, response) => {
 
 const saveRecipe = (request, response) => {
     // get the request recipe information
-    const rows = '(title, time, servings, recipeid, picture, meal, instructions, ingredients, gf, cuisine)';
-    const recipeDetails = request.params.id;
-    const { title, time, servings, recipeid, picture, meal, instructions, ingredients, gf, cuisine } = request.body;
+    // console.log("hello?");
+
+    let query = 'INSERT INTO savedrecipes VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
+    // const req = JSON.parse(request.body);
+    const req = request.data;
+    let values = [req.title, req.time, req.servings, req.recipeid, req.picture, req.meal, req.instructions, req.ingredients, req.gf, req.cuisine];
 
     // console.log("data I guess? $1, $2, $3, $4" [title, time, servings, recipeid]);
-    pool.query('insert into savedrecipes $1 values ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
-            [title, time, servings, recipeid, picture, meal, instructions, ingredients, gf, cuisine],
+    pool.query(query, values,
             (error, results) => {
                 if (error) {
                     throw(error)
