@@ -10,7 +10,15 @@ class DeleteSavedRecipe extends React.Component {
     }
 
     deleteRecipe() {
-        console.log("Delete the recipe with id: " + this.props.recipeid);
+        // console.log("Delete the recipe with id: " + this.props.recipeid);
+        axios.delete("http://localhost:3030/saved/" + this.props.recipeid)
+            .then((response) => {
+                console.log(response.data);
+                this.setState({fetchedRecipes: response.data});
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     render() {

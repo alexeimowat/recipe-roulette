@@ -23,7 +23,8 @@ const getSaved = (request, response) => {
 
 // delete the row corresponding to the given recipeID
 const removeSaved = (request, response) => {
-    const recipeID = parseInt(request.params.id)
+    // const recipeID = parseInt(request.params.id)
+    const recipeID = request.params.id;
     
     pool.query('delete from savedrecipes where recipeID = $1 returning *', [recipeID], (error, results) => {
         if (error) {
