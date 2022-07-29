@@ -6,7 +6,7 @@ import DisplayRecipe from './DisplayRecipe';
 
 // constants
 const initialState = {
-    ingredient: "",
+    didFetch: false,
     recipeID: 0, // just for testing output, not in final code
     recipeImage: "",
     recipeTitle: "",
@@ -32,7 +32,7 @@ const spoonacularAddr = "https://api.spoonacular.com/recipes/random?apiKey=a1d42
 class NewRecipe extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {ingredient: "",
+        this.state = {didFetch: false,
                         recipeID: 0, 
                         recipeImage: "",
                         recipeTitle: "", 
@@ -46,6 +46,10 @@ class NewRecipe extends React.Component {
         this.getRecipe = this.getRecipe.bind(this);
         this.clearState = this.clearState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.getRecipe();
     }
 
     /* 
@@ -72,7 +76,7 @@ class NewRecipe extends React.Component {
                     // displayIngredientsElement = displayIngredientsElement + "<li>" + recipeData.extendedIngredients[i].original + "</li>";
                 }
                 // update the state variables based on the response
-                this.setState({ingredient: recipeData.extendedIngredients[0].original,
+                this.setState({didFetch: true,
                                 recipeID: recipeData.id, 
                                 recipeImage: recipeData.image,
                                 recipeTitle: recipeData.title.toUpperCase(),
@@ -111,21 +115,10 @@ class NewRecipe extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    {/* <img src={this.state.recipeImage} alt="image" width="300" height="200"/>
-                    <h1>{this.state.recipeTitle}</h1>
-                    <p>Serves: {this.state.servingSize} <br/>Ready in {this.state.readyInMinutes} minutes</p>
-                    <h2>Summary:</h2>
-                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.recipeSummary)}} />
-
-                    <h2>Ingredients:</h2>
-                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.ingredientList)}} />
-
-                    <h2>Instructions:</h2>
-                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.instructions)}} /> */}
-                    
 
                     <button type='submit'>Submit</button>
                 </form>
+                {this.state.didFetch ? 
                 <DisplayRecipe title={this.state.recipeTitle}
                                     image={this.state.recipeImage}
                                     ingredients={this.state.ingredientList}
@@ -134,6 +127,7 @@ class NewRecipe extends React.Component {
                                     readyInMinutes={this.state.readyInMinutes}
                                     recipeID={this.state.recipeID}
                                     isSaved={false}/>
+                : null}
             </div>
         );
     }

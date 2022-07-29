@@ -3,7 +3,14 @@ import './index.css';
 import Card from 'react-bootstrap/Card';
 import { Button } from "react-bootstrap";
 import DeleteSavedRecipe from "../SavedRecipes/DeleteSavedRecipe";
+import SaveRecipe from "../SaveRecipe";
 
+/**
+ * Handles the displaying and organizing of a recipe. This is the only class that handles this and as such is used 
+ * in a couple of different components. 
+ * Logic of saving or deleting recipes is abstracted to other classes and rendered by this class, keeping this simple
+ * 
+ */
 class DisplayRecipe extends React.Component {
 
     constructor(props) {
@@ -22,7 +29,8 @@ class DisplayRecipe extends React.Component {
                         This is passed as a prop via the parent */}
                         {this.props.isSaved ? 
                             <DeleteSavedRecipe recipeid={this.props.recipeID}/>
-                                    : <Button style={{ float: 'right' }}>Save</Button>}
+                                    : 
+                            <SaveRecipe recipeDetails={this.props}/>}
                     </Card.Title>
                     <Card.Text style={{ fontStyle: 'italic' }}>
                         Serves {this.props.servingSize}, Ready in {this.props.readyInMinutes} minutes</Card.Text>

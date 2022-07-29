@@ -21,6 +21,7 @@ app.get('/', (request, response) => {
 
 app.get('/saved', db.getSaved)
 app.delete('/saved/:id', db.removeSaved)
+app.post('/saved', db.saveRecipe)
 
 // Now, set the app to listen on the port you set:
 app.listen(port, () => {
