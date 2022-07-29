@@ -16,12 +16,13 @@ class DisplayRecipe extends React.Component {
                 <Card.Img varient="top" src={this.props.image}/>
                 <Card.Body>
                     <Card.Title style={{ color: '#993955', fontWeight: 'bolder' }}>
-                        {this.props.title} <Button style={{ float: 'right' }}>Save</Button>
-                        {/* Conditionally render the delete button. We only want to show it when 
-                        user is viewing saved recipes. This is passed as a prop via the parent */}
+                        {this.props.title} 
+                        {/* Conditionally render the delete button or the save. We only want to show it when 
+                        user is viewing saved recipes, and only show the save button when viewing new recipes. 
+                        This is passed as a prop via the parent */}
                         {this.props.isSaved ? 
                             <DeleteSavedRecipe recipeid={this.props.recipeID}/>
-                                    : null}
+                                    : <Button style={{ float: 'right' }}>Save</Button>}
                     </Card.Title>
                     <Card.Text style={{ fontStyle: 'italic' }}>
                         Serves {this.props.servingSize}, Ready in {this.props.readyInMinutes} minutes</Card.Text>
