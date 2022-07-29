@@ -1,26 +1,18 @@
 import React from "react";
 import axios from "axios";
+import DisplayRecipe from "../../DisplayRecipe";
 
+/**
+ * Class displays all saved recipes from the database. 
+ * Once the component mounts it instantly sends a request to server to query all of the saved recipes, displaying 
+ * them to the screen via the DisplayRecipe component
+ */
 class DisplaySavedRecipe extends React.Component {
     constructor(props) {
         super(props);
         this.state = {fetchedRecipes: []};
 
         this.getRecipe = this.getRecipe.bind(this);
-        this.gatherRecipes = this.gatherRecipes.bind(this);
-
-        // this.getRecipe();
-        // axios.get("http://localhost:3030/saved")
-        //     .then((response) => {
-        //         console.log(response.data);
-                
-                
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
-         
-
     }
 
     componentDidMount() {
@@ -28,36 +20,34 @@ class DisplaySavedRecipe extends React.Component {
 
     }
 
+    /** 
+     * Use Axios to send a request to the server to get the saved recipes from the database
+     */
     getRecipe() {
         // console.log("Ready to try API request");
         axios.get("http://localhost:3030/saved")
             .then((response) => {
-                console.log(response.data);
-                let reRecipes = response.data;
-                this.gatherRecipes(reRecipes);
+                // console.log(response.data);
+                this.setState({fetchedRecipes: response.data});
             })
             .catch((error) => {
                 console.log(error);
             });
     }
 
-    gatherRecipes(results) {
-        // console.log(results.length);
-        // for (let i=0; i<results.length; i++) {
-        //     for (let j=0; j<results[i]; j++) {
-        //         this.setState({})
-        //     }
-        // }
-        this.setState({fetchedRecipes: results});
-    }
-
     render() {
         return (
             <div>
-                {/* Hello, these are your saved recipes! */}
-                {/* {Array.from(this.state.fetchedRecipes).map((recipe, index) => (
-                            <li key={index}>{recipe}</li>
-                        ))} */}
+                {/* Loop through the state and render a DisplayRecipe component for each recipe */}
+                {Array.from(this.state.fetchedRecipes).map((recipe, index) => (
+                            <DisplayRecipe key={index}
+                                            title={recipe.title}
+                                            servingSize={recipe.servings}
+                                            readyInMinutes={recipe.time}
+                                            ingredients={recipe.ingredients}
+                                            instructions={recipe.instructions}
+                                            image={recipe.picture}/>
+                        ))}
             </div>
         )
     }
