@@ -1,8 +1,5 @@
 import React from "react";
-import DOMPurify from "dompurify";
 import './index.css';
-
-// import { Card } from "react-bootstrap/Card";
 import Card from 'react-bootstrap/Card';
 import { Button } from "react-bootstrap";
 
@@ -16,12 +13,14 @@ class DisplayRecipe extends React.Component {
         return (
             <Card style={{ width: '40rem', margin: 'auto', backgroundColor: '#F5F5F5', marginBottom: '30px' }}>
                 <Card.Img varient="top" src={this.props.image}/>
-                {/* <Card.ImgOverlay >
-                    <Button style={{ right: '0', bottom: '0' }}>Save</Button>
-                </Card.ImgOverlay> */}
                 <Card.Body>
                     <Card.Title style={{ color: '#993955', fontWeight: 'bolder' }}>
                         {this.props.title} <Button style={{ float: 'right' }}>Save</Button>
+                        {/* Conditionally render the delete button. We only want to show it when 
+                        user is viewing saved recipes. This is passed as a prop via the parent */}
+                        {this.props.isSaved ? 
+                            <Button variant="secondary" style={{ float: 'right', marginRight: '5px' }}>Delete</Button> 
+                                    : null}
                     </Card.Title>
                     <Card.Text style={{ fontStyle: 'italic' }}>
                         Serves {this.props.servingSize}, Ready in {this.props.readyInMinutes} minutes</Card.Text>

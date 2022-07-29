@@ -132,7 +132,8 @@ class NewRecipe extends React.Component {
                                     instructions={this.state.instructions}
                                     servingSize={this.state.servingSize}
                                     readyInMinutes={this.state.readyInMinutes}
-                                    recipeID={this.state.recipeID}/>
+                                    recipeID={this.state.recipeID}
+                                    isSaved={false}/>
             </div>
         );
     }

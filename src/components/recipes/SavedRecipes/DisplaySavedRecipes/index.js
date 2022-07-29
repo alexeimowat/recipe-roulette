@@ -46,7 +46,8 @@ class DisplaySavedRecipe extends React.Component {
                                             readyInMinutes={recipe.time}
                                             ingredients={recipe.ingredients}
                                             instructions={recipe.instructions}
-                                            image={recipe.picture}/>
+                                            image={recipe.picture}
+                                            isSaved={true}/>
                         ))}
             </div>
         )
