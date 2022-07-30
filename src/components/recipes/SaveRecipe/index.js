@@ -2,6 +2,11 @@ import React from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 
+/**
+ * This component handles our Save functionality. As users browse through random recipes they may want to save 
+ * some. This class renders the button 'Save' and when clicked sends a POST request to the server in order to 
+ * save the recipe to the database
+ */
 class SaveRecipe extends React.Component {
     constructor(props) {
         super(props);
@@ -10,22 +15,14 @@ class SaveRecipe extends React.Component {
         this.prepareRecipe = this.prepareRecipe.bind(this);
     }
 
+    /**
+     * Send a POST request to the server to add our recipe to the database
+     */
     saveRecipe(formattedInstructions, formattedIngredients) {
         let recipe = this.props.recipeDetails;
-        // console.log(recipe.title);
         axios.post("http://localhost:3030/save",
             {
                 data: {
-                    // title: "Test Title",
-                    // time: "50",
-                    // servings: "2",
-                    // recipeid: 123455,
-                    // picture: "hello.jpg",
-                    // meal: "test",
-                    // instructions: '{"Hello"}',
-                    // ingredients: '{"Hi"}',
-                    // gf: false,
-                    // cuisine: "test"
                     title: recipe.title,
                     time: recipe.readyInMinutes,
                     servings: recipe.servingSize,
@@ -39,17 +36,16 @@ class SaveRecipe extends React.Component {
                 }
             })
             .then((response) => {
-                console.log("Did we make it?")
+                console.log(response);
             })
             .catch((error) => {
                 console.log(error)
             })
-        // console.log("Save the recipe with ID: " + this.props.recipeDetails.recipeID);
-
     }
 
     /** We need to prepare the 2 arrays in the recipe for Postgresql insert */
     prepareRecipe() {
+        // Loop through the ingredients array and create a Postgresql style string
         let originalIng = this.props.recipeDetails.ingredients;
         let ingredientModified = '{"';
         for(let i=0; i<originalIng.length-1; i++) {
@@ -57,6 +53,7 @@ class SaveRecipe extends React.Component {
         }
         ingredientModified = ingredientModified + originalIng.splice(-1) + '"}';
 
+        // Loop through the instructions and create a Postgresql style string
         let originalInst = this.props.recipeDetails.instructions;
         let instructionsModified = '{"';
         for(let j=0; j<originalInst.length-1; j++) {
@@ -65,7 +62,6 @@ class SaveRecipe extends React.Component {
         instructionsModified = instructionsModified + originalInst.splice(-1) + '"}';
 
         this.saveRecipe(originalIng, originalInst);
-
     }
 
     render() {
