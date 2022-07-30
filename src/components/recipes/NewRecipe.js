@@ -3,6 +3,8 @@ import React from 'react';
 import axios, { Axios } from 'axios';
 import DOMPurify from 'dompurify';
 import DisplayRecipe from './DisplayRecipe';
+import styles from './NewRecipe.module.scss';
+import { Button } from "react-bootstrap";
 
 // constants
 const initialState = {
@@ -113,21 +115,36 @@ class NewRecipe extends React.Component {
     
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
+            <div className="container h-80 mt-3 mb-5 ml-5 mr-5">
+                <div style={{float: 'right'}}>
+                    <form onSubmit={this.handleSubmit}>
 
-                    <button type='submit'>Submit</button>
-                </form>
-                {this.state.didFetch ? 
-                <DisplayRecipe title={this.state.recipeTitle}
-                                    image={this.state.recipeImage}
-                                    ingredients={this.state.ingredientList}
-                                    instructions={this.state.instructions}
-                                    servingSize={this.state.servingSize}
-                                    readyInMinutes={this.state.readyInMinutes}
-                                    recipeID={this.state.recipeID}
-                                    isSaved={false}/>
-                : null}
+                        <Button type='submit' size='lg' style={{float: 'right'}}>New Recipe!</Button>
+                    </form> 
+                </div>
+                <div className="row">
+                
+                    <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">                
+                        {this.state.didFetch ? 
+                        <DisplayRecipe title={this.state.recipeTitle}
+                                            image={this.state.recipeImage}
+                                            ingredients={this.state.ingredientList}
+                                            instructions={this.state.instructions}
+                                            servingSize={this.state.servingSize}
+                                            readyInMinutes={this.state.readyInMinutes}
+                                            recipeID={this.state.recipeID}
+                                            isSaved={false}
+                                            getNew={this.hand}/>
+                        : null}
+                    </div>
+                </div>
+                {/* <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-align">
+                    <form onSubmit={this.handleSubmit}>
+
+                        <button type='submit' className={styles.submitBtn} style={{float: 'right'}}>Submit</button>
+                    </form> 
+                </div> */}
+                
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -19,6 +20,7 @@ class NavHeader extends React.Component {
                             <Nav.Link href="#home" onClick={this.props.showNewRecipe}>Home</Nav.Link>
                             <Nav.Link href="#saved-recipes" onClick={this.props.showSaved}>Saved Recipes</Nav.Link>
                             {/* <Nav.Link href="#about">About</Nav.Link> */}
+                            {/* <Button >New Recipe!</Button> */}
                         </Nav>
                 </Container>
             </Navbar>

@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import DisplayRecipe from "../../DisplayRecipe";
+import { Button } from "react-bootstrap";
+import { Tab } from "react-bootstrap";
+import { Tabs } from "react-bootstrap";
 
 /**
  * Class displays all saved recipes from the database. 
@@ -43,6 +46,18 @@ class DisplaySavedRecipe extends React.Component {
     render() {
         return (
             <div>
+            <Tabs 
+                defaultActiveKey="Supper"
+                id="mealTypes"
+                className="mb-3" 
+                justify>
+                <Tab eventKey="Breakfast" title="Breakfast">Breakfast</Tab>
+                <Tab eventKey="Lunch" title="Lunch">Lunch</Tab>
+                <Tab eventKey="Snacks" title="Snacks">Snacks</Tab>
+                <Tab eventKey="Supper" title="Supper">Supper</Tab>
+                <Tab eventKey="Dessert" title="Dessert">Dessert</Tab>
+            </Tabs>
+            <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>        
                 {/* Loop through the state and render a DisplayRecipe component for each recipe */}
                 {Array.from(this.state.fetchedRecipes).map((recipe, index) => (
                             <DisplayRecipe key={index}
@@ -56,6 +71,7 @@ class DisplaySavedRecipe extends React.Component {
                                             recipeID={recipe.recipeid}
                                             applyChg={this.applyChanges}/>
                         ))}
+            </div>
             </div>
         )
     }

@@ -1,0 +1,29 @@
+.allContent {
+    max-width: 80%;
+    max-height: 80%;
+    height: 80%;
+    width: 80%;
+    // margin: auto;
+    margin-left: 10%;
+    margin-top: 20px;
+}
+
+.newRecipeButton {
+    // float: right;
+    margin: auto;
+}
+
+.displayNewRecipe {
+    float: left;
+    margin: auto;
+}
+
+.submitBtn {
+    border-radius: 2px;
+    background-color: #4C7AF3;
+    border: #4C7AF3 solid 1px;
+    color: white;
+    font-size: larger;
+    padding: 10px;
+    font-weight: bolder;
+}

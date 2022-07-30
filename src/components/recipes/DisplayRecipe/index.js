@@ -20,9 +20,9 @@ class DisplayRecipe extends React.Component {
 
     render() {
         return (
-            <div className={styles.displayContainer}>
-                <p className="test">Hello</p>
-            <Card style={{ width: '40rem', margin: 'auto', backgroundColor: '#F5F5F5', marginBottom: '30px' }}>
+            // style={{ width: '40rem', margin: 'auto', marginBottom: '30px' }}
+            // <div className="container h-80 w-50 mt-3 mb-5 ml-5 mr-5">
+            <Card border="light" >
                 <Card.Img varient="top" src={this.props.image}/>
                 <Card.Body>
                     <Card.Title style={{ color: '#993955', fontWeight: 'bolder' }}>
@@ -51,7 +51,7 @@ class DisplayRecipe extends React.Component {
                     </Card.Text>
                 </Card.Body>
             </Card>
-            </div>
+            // </div>
         )
     }
 }
