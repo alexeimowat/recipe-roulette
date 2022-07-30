@@ -35,6 +35,11 @@ class DisplaySavedRecipe extends React.Component {
             });
     }
 
+    /** Refreshes the state with a new GET request. Called from the delete button component */
+    applyChanges = () => {
+        this.getRecipe();
+    }
+
     render() {
         return (
             <div>
@@ -48,7 +53,8 @@ class DisplaySavedRecipe extends React.Component {
                                             instructions={recipe.instructions}
                                             image={recipe.picture}
                                             isSaved={true}
-                                            recipeID={recipe.recipeid}/>
+                                            recipeID={recipe.recipeid}
+                                            applyChg={this.applyChanges}/>
                         ))}
             </div>
         )

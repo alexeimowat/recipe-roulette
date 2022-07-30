@@ -28,7 +28,7 @@ class DisplayRecipe extends React.Component {
                         user is viewing saved recipes, and only show the save button when viewing new recipes. 
                         This is passed as a prop via the parent */}
                         {this.props.isSaved ? 
-                            <DeleteSavedRecipe recipeid={this.props.recipeID}/>
+                            <DeleteSavedRecipe recipeid={this.props.recipeID} applyChg={this.props.applyChg}/>
                                     : 
                             <SaveRecipe recipeDetails={this.props}/>}
                     </Card.Title>

@@ -6,6 +6,8 @@ class DeleteSavedRecipe extends React.Component {
     constructor(props) {
         super(props);
 
+        // this.state = {fetchedRecipes: ""};
+
         this.deleteRecipe = this.deleteRecipe.bind(this);
     }
 
@@ -14,7 +16,8 @@ class DeleteSavedRecipe extends React.Component {
         axios.delete("http://localhost:3030/saved/" + this.props.recipeid)
             .then((response) => {
                 console.log(response.data);
-                this.setState({fetchedRecipes: response.data});
+                this.props.applyChg();
+                // this.setState({fetchedRecipes: response.data});
             })
             .catch((error) => {
                 console.log(error);
