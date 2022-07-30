@@ -1,7 +1,7 @@
 import React from "react";
-import NavHeader from "../header/index";
-import NewRecipe from "../recipes/NewRecipe";
-import DisplaySavedRecipe from '../recipes/SavedRecipes/DisplaySavedRecipes/index';
+import NavHeader from "../header/Header";
+import NewRecipe from "../recipes/NewRecipe/NewRecipe";
+import DisplaySavedRecipe from "../recipes/SavedRecipes/DisplaySavedRecipes/DisplaySavedRecipes";
 // import DisplayRecipe from "../recipes/DisplayRecipe";
 
 const initialState = {

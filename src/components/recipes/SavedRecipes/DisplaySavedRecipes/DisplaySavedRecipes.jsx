@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import DisplayRecipe from "../../DisplayRecipe";
+import DisplayRecipe from "../../DisplayRecipe/DisplayRecipe";
 import { Button } from "react-bootstrap";
 import { Tab } from "react-bootstrap";
 import { Tabs } from "react-bootstrap";

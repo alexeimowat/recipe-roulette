@@ -3,9 +3,8 @@ import React from "react";
 import styles from './index.module.scss';
 import Card from 'react-bootstrap/Card';
 import { Button } from "react-bootstrap";
-import DeleteSavedRecipe from "../SavedRecipes/DeleteSavedRecipe";
-import SaveRecipe from "../SaveRecipe";
-
+import DeleteSavedRecipe from "../SavedRecipes/DeleteSavedRecipe/DeleteSavedRecipe";
+import SaveRecipe from "../SaveRecipe/SaveRecipe";
 /**
  * Handles the displaying and organizing of a recipe. This is the only class that handles this and as such is used 
  * in a couple of different components. 

@@ -2,8 +2,7 @@
 import React from 'react';
 import axios, { Axios } from 'axios';
 import DOMPurify from 'dompurify';
-import DisplayRecipe from './DisplayRecipe';
-import styles from './NewRecipe.module.scss';
+import DisplayRecipe from '../DisplayRecipe/DisplayRecipe';
 import { Button } from "react-bootstrap";
 
 // constants
