@@ -137,12 +137,6 @@ class NewRecipe extends React.Component {
                         : null}
                     </div>
                 </div>
-                {/* <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-align">
-                    <form onSubmit={this.handleSubmit}>
-
-                        <button type='submit' className={styles.submitBtn} style={{float: 'right'}}>Submit</button>
-                    </form> 
-                </div> */}
                 
             </div>
         );

@@ -1,15 +1,14 @@
 import React from "react";
-// import './index.css';
 import styles from './index.module.scss';
 import Card from 'react-bootstrap/Card';
 import { Button } from "react-bootstrap";
 import DeleteSavedRecipe from "../SavedRecipes/DeleteSavedRecipe/DeleteSavedRecipe";
 import SaveRecipe from "../SaveRecipe/SaveRecipe";
+
 /**
  * Handles the displaying and organizing of a recipe. This is the only class that handles this and as such is used 
  * in a couple of different components. 
  * Logic of saving or deleting recipes is abstracted to other classes and rendered by this class, keeping this simple
- * 
  */
 class DisplayRecipe extends React.Component {
 
@@ -19,8 +18,6 @@ class DisplayRecipe extends React.Component {
 
     render() {
         return (
-            // style={{ width: '40rem', margin: 'auto', marginBottom: '30px' }}
-            // <div className="container h-80 w-50 mt-3 mb-5 ml-5 mr-5">
             <Card border="light" >
                 <Card.Img varient="top" src={this.props.image}/>
                 <Card.Body>
@@ -50,7 +47,6 @@ class DisplayRecipe extends React.Component {
                     </Card.Text>
                 </Card.Body>
             </Card>
-            // </div>
         )
     }
 }

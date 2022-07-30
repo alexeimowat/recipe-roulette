@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import DisplayRecipe from "../../DisplayRecipe/DisplayRecipe";
-import { Button } from "react-bootstrap";
 import { Tab } from "react-bootstrap";
 import { Tabs } from "react-bootstrap";
 
@@ -44,6 +43,9 @@ class DisplaySavedRecipe extends React.Component {
                 let suppers = [];
                 let desserts = [];
 
+                /** Loop through our response and store the recipes that match our 
+                 * meal types. This will be stored in the state and accessed in when rendered
+                 */
                 for (let i=0; i<response.data.length; i++) {
                     console.log(response.data[i].meal);
                     let curMeal = response.data[i].meal;
@@ -70,7 +72,6 @@ class DisplaySavedRecipe extends React.Component {
                                 snackRecipes: snacks,
                                 supperRecipes: suppers,
                                 dessertRecipes: desserts});
-                //console.log(this.state);
 
             })
             .catch((error) => {
@@ -82,10 +83,6 @@ class DisplaySavedRecipe extends React.Component {
     applyChanges = () => {
         this.getRecipe();
     }
-
-    // findMealType(mealType) {
-
-    // }
 
     render() {
         let showBreakfasts = Array.from(this.state.breakfastRecipes).map((recipe, index) => (
@@ -186,21 +183,9 @@ class DisplaySavedRecipe extends React.Component {
                     </div>
                 </Tab>
             </Tabs>
-            <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>        
-                {/* Loop through the state and render a DisplayRecipe component for each recipe */}
-                {/* {Array.from(this.state.fetchedRecipes).map((recipe, index) => (
-                            <DisplayRecipe key={index}
-                                            title={recipe.title}
-                                            servingSize={recipe.servings}
-                                            readyInMinutes={recipe.time}
-                                            ingredients={recipe.ingredients}
-                                            instructions={recipe.instructions}
-                                            image={recipe.picture}
-                                            isSaved={true}
-                                            recipeID={recipe.recipeid}
-                                            applyChg={this.applyChanges}/>
-                        ))} */}
-            </div>
+            {/* <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>        
+            
+            </div> */}
             </div>
         )
     }
