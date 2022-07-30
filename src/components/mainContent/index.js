@@ -1,5 +1,6 @@
 import React from "react";
 import NavHeader from "../header/Header";
+import NavFooter from "../footer";
 import NewRecipe from "../recipes/NewRecipe/NewRecipe";
 import DisplaySavedRecipe from "../recipes/SavedRecipes/DisplaySavedRecipes/DisplaySavedRecipes";
 
@@ -51,7 +52,7 @@ class MainContent extends React.Component {
                 <NavHeader showSaved={this.showSavedClicked} showNewRecipe={this.showNewRecipeClicked}/>
 
                 {contentToShow}
-                
+                {/* <NavFooter /> */}
             </div>
         )
     }

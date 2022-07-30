@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import DisplayRecipe from "../../DisplayRecipe/DisplayRecipe";
+import NavFooter from "../../../footer";
 import { Tab } from "react-bootstrap";
 import { Tabs } from "react-bootstrap";
 
@@ -152,40 +153,43 @@ class DisplaySavedRecipe extends React.Component {
 
         return (
             <div>
-            <Tabs 
-                defaultActiveKey="Supper"
-                id="mealTypes"
-                className="mb-3" 
-                justify>
-                <Tab eventKey="Breakfast" title="Breakfast">
-                    <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>
-                        {showBreakfasts}
-                    </div>
-                </Tab>
-                <Tab eventKey="Lunch" title="Lunch">
-                    <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>
-                        {showLunches}
-                    </div>
-                </Tab>
-                <Tab eventKey="Snacks" title="Snacks">
-                    <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>
-                        {showSnacks}
-                    </div>
-                </Tab>
-                <Tab eventKey="Supper" title="Supper">
-                    <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>
-                        {showSuppers}
-                    </div>
-                </Tab>
-                <Tab eventKey="Dessert" title="Dessert">
-                    <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>
-                        {showDesserts}
-                    </div>
-                </Tab>
-            </Tabs>
+            
+                <Tabs 
+                    defaultActiveKey="Supper"
+                    id="mealTypes"
+                    className="mb-3" 
+                    justify>
+                    <Tab eventKey="Breakfast" title="Breakfast">
+                        <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>
+                            {showBreakfasts}
+                        </div>
+                    </Tab>
+                    <Tab eventKey="Lunch" title="Lunch">
+                        <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>
+                            {showLunches}
+                        </div>
+                    </Tab>
+                    <Tab eventKey="Snacks" title="Snacks">
+                        <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>
+                            {showSnacks}
+                        </div>
+                    </Tab>
+                    <Tab eventKey="Supper" title="Supper">
+                        <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>
+                            {showSuppers}
+                        </div>
+                    </Tab>
+                    <Tab eventKey="Dessert" title="Dessert">
+                        <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>
+                            {showDesserts}
+                        </div>
+                    </Tab>
+                </Tabs>
+                
             {/* <div className="container h-80 mt-3 mb-5" style={{float: 'left', marginLeft: '5%', width: '60%'}}>        
             
             </div> */}
+            {/* <NavFooter /> */}
             </div>
         )
     }
