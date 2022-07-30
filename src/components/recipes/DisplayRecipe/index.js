@@ -1,5 +1,6 @@
 import React from "react";
-import './index.css';
+// import './index.css';
+import styles from './index.module.scss';
 import Card from 'react-bootstrap/Card';
 import { Button } from "react-bootstrap";
 import DeleteSavedRecipe from "../SavedRecipes/DeleteSavedRecipe";
@@ -19,6 +20,8 @@ class DisplayRecipe extends React.Component {
 
     render() {
         return (
+            <div className={styles.displayContainer}>
+                <p className="test">Hello</p>
             <Card style={{ width: '40rem', margin: 'auto', backgroundColor: '#F5F5F5', marginBottom: '30px' }}>
                 <Card.Img varient="top" src={this.props.image}/>
                 <Card.Body>
@@ -48,6 +51,7 @@ class DisplayRecipe extends React.Component {
                     </Card.Text>
                 </Card.Body>
             </Card>
+            </div>
         )
     }
 }
