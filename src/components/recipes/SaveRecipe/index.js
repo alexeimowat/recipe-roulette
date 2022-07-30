@@ -1,6 +1,10 @@
 import React from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
+import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
+import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
 /**
  * This component handles our Save functionality. As users browse through random recipes they may want to save 
@@ -10,6 +14,11 @@ import { Button } from "react-bootstrap";
 class SaveRecipe extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            meal: "Supper",
+            saveSuccess: false
+        }
 
         this.saveRecipe = this.saveRecipe.bind(this);
         this.prepareRecipe = this.prepareRecipe.bind(this);
@@ -28,7 +37,7 @@ class SaveRecipe extends React.Component {
                     servings: recipe.servingSize,
                     recipeid: recipe.recipeID,
                     picture: recipe.image,
-                    meal: 'test',
+                    meal: this.state.meal,
                     instructions: formattedInstructions,
                     ingredients: formattedIngredients,
                     gf: false,
@@ -36,7 +45,9 @@ class SaveRecipe extends React.Component {
                 }
             })
             .then((response) => {
-                console.log(response);
+                // console.log(response);
+                // item added successfully
+                this.setState({saveSuccess: true});
             })
             .catch((error) => {
                 console.log(error)
@@ -64,9 +75,32 @@ class SaveRecipe extends React.Component {
         this.saveRecipe(originalIng, originalInst);
     }
 
+    changeMealType(newMeal) {
+        this.setState({meal: newMeal});
+        // const [value,setValue]=useState('');
+        // const handleSelect=(e)=>{
+        //     console.log(e);
+            // setValue(e)
+        // console.log(e);
+
+    }
+
     render() {
         return (
-            <Button style={{ float: 'right' }} onClick={this.prepareRecipe}>Save</Button>
+            // <Button style={{ float: 'right' }} onClick={this.prepareRecipe}>Save</Button>
+            <Dropdown as={ButtonGroup} style= {{ float: 'right' }} >
+                {this.state.saveSuccess ? <Button disabled>Saved!</Button> : 
+                <Button onClick={this.prepareRecipe}>Save to {this.state.meal}</Button>
+                }       
+                <DropdownToggle split variant="primary" id="mealCategory" />
+                <DropdownMenu>
+                    <DropdownItem> <div onClick={(e) => this.changeMealType(e.target.textContent)}>Breakfast</div> </DropdownItem>
+                    <DropdownItem> <div onClick={(e) => this.changeMealType(e.target.textContent)}>Lunch</div> </DropdownItem>
+                    <DropdownItem> <div onClick={(e) => this.changeMealType(e.target.textContent)}>Snack</div> </DropdownItem>
+                    <DropdownItem> <div onClick={(e) => this.changeMealType(e.target.textContent)}>Supper</div> </DropdownItem>
+                    <DropdownItem> <div onClick={(e) => this.changeMealType(e.target.textContent)}>Dessert</div> </DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
         )
     }
 }
