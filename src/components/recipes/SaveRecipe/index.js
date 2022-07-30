@@ -28,6 +28,10 @@ class SaveRecipe extends React.Component {
      * Send a POST request to the server to add our recipe to the database
      */
     saveRecipe(formattedInstructions, formattedIngredients) {
+        console.log("Instructions: ");
+        console.log(formattedInstructions);
+        console.log("Ingredients: ");
+        console.log(formattedIngredients);
         let recipe = this.props.recipeDetails;
         axios.post("http://localhost:3030/save",
             {
@@ -57,12 +61,15 @@ class SaveRecipe extends React.Component {
     /** We need to prepare the 2 arrays in the recipe for Postgresql insert */
     prepareRecipe() {
         // Loop through the ingredients array and create a Postgresql style string
+        // console.log(this.props);
         let originalIng = this.props.recipeDetails.ingredients;
         let ingredientModified = '{"';
         for(let i=0; i<originalIng.length-1; i++) {
             ingredientModified = ingredientModified + originalIng[i] + '", "';
         }
         ingredientModified = ingredientModified + originalIng.splice(-1) + '"}';
+        // console.log("Just parsed the ingredients: ");
+        // console.log(ingredientModified);
 
         // Loop through the instructions and create a Postgresql style string
         let originalInst = this.props.recipeDetails.instructions;
@@ -71,8 +78,12 @@ class SaveRecipe extends React.Component {
             instructionsModified = instructionsModified + originalInst[j] + '", "'
         }
         instructionsModified = instructionsModified + originalInst.splice(-1) + '"}';
+        // console.log("Just parsed the instructions: ");
+        // console.log(instructionsModified);
 
-        this.saveRecipe(originalIng, originalInst);
+
+        // this.saveRecipe(originalIng, originalInst);
+        this.saveRecipe(instructionsModified, ingredientModified);
     }
 
     changeMealType(newMeal) {
