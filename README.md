@@ -28,6 +28,7 @@ The app offers 2 main modes:
 ### Generating Random Recipes
 The main screen of the app presents you with a random recipe (rendered immediately) and a button to generate a new random recipe.
 You can save this recipe to a specific category by selecting the dropdown of the save button or generate a new random recipe. 
+
 <img width="500" alt="Screen Shot 2022-07-30 at 21 15 00" src="https://user-images.githubusercontent.com/56664562/182008285-5d66697f-0139-4fa7-98a3-000c64c26641.png">
 
 <img width="500" alt="Screen Shot 2022-07-30 at 21 15 23" src="https://user-images.githubusercontent.com/56664562/182008292-00b3cb1b-aa08-4fd2-ac62-d723c934d39a.png">
