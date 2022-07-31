@@ -16,7 +16,7 @@ Recipe Roulette is a great way for me combine my love for programming, food, and
 as well! 
 
 ## Features
-Even though the app is run locally, I'd still love to showcase the features that I've developed! Click [here](https://youtube.com) for a demo video, or 
+Even though the app is run locally, I'd still love to showcase the features that I've developed! Click [here](https://www.youtube.com/watch?v=YFwxIn1jsvA&t=6s&ab_channel=Arkhym) for a demo video, or 
 scroll down for screenshots. 
 
 If you'd like to skip this section, you can go to the [Next Section](#Tech-Stack) or back to the [Contents](#Contents)
@@ -64,9 +64,9 @@ Below is a breakdown of the tech and languages used:
 Currently the app is run locally as I only intended to develop it for us and to use casually. However, after having a lot of fun with it I found myself 
 coming up with many feature ideas for the app and think it would be awesome to deploy it one day to friends and family! 
 
-If you're curious about my ideas head over to the issues tab of this repo to see my plans. 
+If you're curious about my ideas head over to the [issues](https://github.com/alexeimowat/recipe-roulette/issues) tab of this repo to see my plans. 
 
 
-Thanks for taking the time to read this and look at my project! If you have any questions (or suggestions) feel free to start a discussion with me!
+Thanks for taking the time to read this and look at my project!
 
 Have a great day! :smile:
