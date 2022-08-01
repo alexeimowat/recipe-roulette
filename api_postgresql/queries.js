@@ -51,8 +51,25 @@ const saveRecipe = (request, response) => {
 
 }
 
+/** Updates the row with the new values based on the recipeid */
+const updateRow = (request, response) => {
+    let query = 'UPDATE savedrecipes SET title=$1, time=$2, servings=$3, recipeid=$4, picture=$5, meal=$6, instructions=$7, ingredients=$8, gf=$9, cuisine=$10) WHERE recipeid=$4';
+    const req = request.body.data;
+
+    let values = [req.title, req.time, req.servings, req.recipeid, req.picture, req.meal, req.instructions, req.ingredients, req.gf, req.cuisine];
+
+    pool.query(query, values,
+        (error, results) => {
+            if (error) {
+                throw(error)
+            }
+            response.status(200).send('Row Updated');
+        })
+}
+
 module.exports = {
     getSaved,
     removeSaved,
-    saveRecipe
+    saveRecipe,
+    updateRow
 }
