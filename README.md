@@ -47,6 +47,7 @@ You can also press the 'Delete' button which will remove the given recipe from y
 
 ## Tech Stack
 I used a variety of technologies when building this app, some that I have previous experience with and some that were completely new to me. 
+Overall, the project follows the PERN stack (Postgres, Express, React, Node)
 
 Below is a breakdown of the tech and languages used:
 ### Front-end
